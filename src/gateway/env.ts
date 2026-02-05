@@ -55,6 +55,12 @@ export function buildEnvVars(env: MoltbotEnv): Record<string, string> {
   if (env.SLACK_APP_TOKEN) envVars.SLACK_APP_TOKEN = env.SLACK_APP_TOKEN;
   if (env.CDP_SECRET) envVars.CDP_SECRET = env.CDP_SECRET;
   if (env.WORKER_URL) envVars.WORKER_URL = env.WORKER_URL;
+  // Gmail credentials (available as env vars for MCP/skills, not written to clawdbot config)
+  if (env.GMAIL_USER) envVars.GMAIL_USER = env.GMAIL_USER;
+  if (env.GMAIL_APP_PASSWORD) envVars.GMAIL_APP_PASSWORD = env.GMAIL_APP_PASSWORD;
+  // GitHub deploy key for moltbot workspace
+  if (env.GITHUB_DEPLOY_KEY) envVars.GITHUB_DEPLOY_KEY = env.GITHUB_DEPLOY_KEY;
+  if (env.GITHUB_REPO_URL) envVars.GITHUB_REPO_URL = env.GITHUB_REPO_URL;
 
   return envVars;
 }

@@ -38,6 +38,12 @@ export interface MoltbotEnv {
   BROWSER?: Fetcher;
   CDP_SECRET?: string; // Shared secret for CDP endpoint authentication
   WORKER_URL?: string; // Public URL of the worker (for CDP endpoint)
+  // Gmail credentials (available as env vars in container for MCP/skills)
+  GMAIL_USER?: string;
+  GMAIL_APP_PASSWORD?: string;
+  // GitHub deploy key for moltbot workspace
+  GITHUB_DEPLOY_KEY?: string;
+  GITHUB_REPO_URL?: string;
 }
 
 /**

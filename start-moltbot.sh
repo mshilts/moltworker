@@ -299,10 +299,18 @@ rm -f "$CONFIG_DIR/gateway.lock" 2>/dev/null || true
 BIND_MODE="lan"
 echo "Dev mode: ${CLAWDBOT_DEV_MODE:-false}, Bind mode: $BIND_MODE"
 
+# Export Gmail credentials for agent scripts (no channel config needed)
+export GMAIL_USER="${GMAIL_USER:-}"
+export GMAIL_APP_PASSWORD="${GMAIL_APP_PASSWORD:-}"
+
+# Export GitHub credentials for agent scripts (no channel config needed)
+export GITHUB_DEPLOY_KEY="${GITHUB_DEPLOY_KEY:-}"
+export GITHUB_REPO_URL="${GITHUB_REPO_URL:-}"
+
 if [ -n "$CLAWDBOT_GATEWAY_TOKEN" ]; then
     echo "Starting gateway with token auth..."
-    exec clawdbot gateway --port 18789 --verbose --allow-unconfigured --bind "$BIND_MODE" --token "$CLAWDBOT_GATEWAY_TOKEN"
+    exec clawdbot gateway --port 18789 --allow-unconfigured --bind "$BIND_MODE" --token "$CLAWDBOT_GATEWAY_TOKEN"
 else
     echo "Starting gateway with device pairing (no token)..."
-    exec clawdbot gateway --port 18789 --verbose --allow-unconfigured --bind "$BIND_MODE"
+    exec clawdbot gateway --port 18789 --allow-unconfigured --bind "$BIND_MODE"
 fi
